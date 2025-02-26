@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import React from "react";
 
 const Reviewer = () => {
   const reviews = [
@@ -60,51 +60,51 @@ const Reviewer = () => {
   ];
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-12 sm:py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Lebih dari 2000+ Pelajar Menyukai LangGo
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
             Dengan fitur interaktif dan AI QnA, belajar bahasa Inggris jadi lebih mudah dan menyenangkan bagi semua orang!
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {reviews.map((review) => (
             <div 
               key={review.id} 
-              className={`${review.bgColor} rounded-2xl p-6 relative overflow-hidden transition-transform duration-300 hover:scale-105`}
+              className={`${review.bgColor} rounded-xl sm:rounded-2xl p-4 sm:p-6 relative overflow-hidden transition-transform duration-300 hover:scale-105`}
               style={{
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 85%, 95% 100%, 0% 100%)"
               }}
             >
               <div className="border-t-2 border-dashed border-gray-300 absolute top-0 left-6 right-6"></div>
               
-              <div className="mb-4">
-                <p className="text-gray-700 text-sm">
+              <div className="mb-3 sm:mb-4">
+                <p className="text-gray-700 text-xs sm:text-sm">
                   {review.text}
                 </p>
               </div>
               
-              <div className="flex items-center mt-4">
-                <div className="h-10 w-10 rounded-full overflow-hidden bg-gray-300 flex-shrink-0">
-                  <div className="w-full h-full flex items-center justify-center text-gray-600 font-bold">
+              <div className="flex items-center mt-3 sm:mt-4">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full overflow-hidden bg-gray-300 flex-shrink-0">
+                  <div className="w-full h-full flex items-center justify-center text-gray-600 font-bold text-sm sm:text-base">
                     {review.name.charAt(0)}
                   </div>
                 </div>
-                <div className="ml-3">
-                  <h4 className="font-medium text-gray-900">{review.name}</h4>
-                  <p className="text-xs text-gray-600">{review.role}</p>
+                <div className="ml-2 sm:ml-3">
+                  <h4 className="font-medium text-gray-900 text-sm sm:text-base">{review.name}</h4>
+                  <p className="text-xxs sm:text-xs text-gray-600">{review.role}</p>
                 </div>
               </div>
               
-              <div className="flex mt-2">
+              <div className="flex mt-1 sm:mt-2">
                 {[...Array(5)].map((_, i) => (
                   <svg 
                     key={i}
-                    className={`w-4 h-4 ${i < review.stars ? 'text-yellow-400' : 'text-gray-300'}`}
+                    className={`w-3 h-3 sm:w-4 sm:h-4 ${i < review.stars ? 'text-yellow-400' : 'text-gray-300'}`}
                     fill="currentColor" 
                     viewBox="0 0 20 20"
                   >

@@ -43,15 +43,15 @@ const cards = [
 
 const SubHero = () => {
   return (
-    <div className="max-w-5xl mx-auto mb-48 p-6 h-screen flex flex-col justify-between">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32">
       {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-10"
+        className="text-center mb-10 sm:mb-16"
       >
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Cara Mudah untuk{' '}
           <span className="relative inline-block text-blue-500">
             Belajar & Berkembang
@@ -63,31 +63,31 @@ const SubHero = () => {
             />
           </span>
         </h1>
-        <p className="text-gray-600 max-w-3xl mx-auto">
+        <p className="text-gray-600 max-w-3xl mx-auto px-4">
           LangGo hadir untuk membantu kamu menguasai bahasa asing dengan lebih mudah dan menyenangkan. Dapatkan akses ke berbagai sumber belajar dan kesempatan internasional untuk mencapai impianmu!
         </p>
       </motion.div>
 
       {/* Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
         {cards.map((card, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2, duration: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            className="relative bg-white rounded-[30px] p-6 shadow-md border border-gray-200 hover:shadow-lg transition flex flex-col justify-between"
+            transition={{ delay: index * 0.1, duration: 0.6 }}
+            whileHover={{ scale: 1.03 }}
+            className="relative bg-white rounded-[20px] sm:rounded-[30px] p-5 sm:p-6 shadow-md border border-gray-200 hover:shadow-lg transition flex flex-col justify-between h-full"
           >
             <div>
-              <div className="text-4xl mb-4">{card.icon}</div>
-              <h2 className="text-xl md:text-2xl font-semibold mb-3">
+              <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{card.icon}</div>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3">
                 {card.title} <span className="text-blue-400">{card.highlight}</span>
               </h2>
-              <p className="text-gray-500">{card.text}</p>
+              <p className="text-sm sm:text-base text-gray-500">{card.text}</p>
             </div>
-            <button className="absolute top-4 right-4 bg-blue-100 text-blue-500 p-2 rounded-full shadow-md hover:bg-blue-200">
-              <ArrowUpRight size={20} />
+            <button className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-blue-100 text-blue-500 p-1.5 sm:p-2 rounded-full shadow-md hover:bg-blue-200">
+              <ArrowUpRight size={16} className="sm:w-5 sm:h-5" />
             </button>
           </motion.div>
         ))}
