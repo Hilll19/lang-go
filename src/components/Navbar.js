@@ -1,8 +1,12 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 
 const Navbar = () => {
+  const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -51,7 +55,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            {["Home", "Language", "Oppurtunity", "Event & News", "FAQ"].map(
+            {["Home", "Language", "Opportunity", "Event & News", "FAQ"].map(
               (item) => (
                 <Link
                   key={item}
@@ -69,15 +73,30 @@ const Navbar = () => {
                 </Link>
               )
             )}
-            <button
-              className={`px-4 py-2 rounded-full transition-colors duration-200 ${
-                scrolled
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-white text-blue-600 hover:bg-gray-100"
-              }`}
-            >
-              LOGIN
-            </button>
+            
+            {session ? (
+              <button
+                onClick={() => signOut()}
+                className={`px-4 py-2 rounded-full transition-colors duration-200 ${
+                  scrolled
+                    ? "bg-red-600 text-white hover:bg-red-700"
+                    : "bg-white text-red-600 hover:bg-gray-100"
+                }`}
+              >
+                LOGOUT
+              </button>
+            ) : (
+              <button
+                onClick={() => signIn("google")}
+                className={`px-4 py-2 rounded-full transition-colors duration-200 ${
+                  scrolled
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-white text-blue-600 hover:bg-gray-100"
+                }`}
+              >
+                LOGIN
+              </button>
+            )}
           </div>
         </div>
       </div>
