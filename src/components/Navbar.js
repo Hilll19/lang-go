@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; // Import useRouter
 
 const Navbar = () => {
   const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter(); // Tambahkan router
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +20,20 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Fungsi untuk handle login
+  const handleLogin = () => {
+    signIn("google", { callbackUrl: "/dashboard" });
+  };
+
+  // Fungsi untuk memproses tombol Mulai Sekarang di homepage
+  const handleStartNow = () => {
+    if (session) {
+      router.push("/dashboard");
+    } else {
+      signIn("google", { callbackUrl: "/dashboard" });
+    }
+  };
 
   return (
     <nav
@@ -75,19 +91,31 @@ const Navbar = () => {
             )}
             
             {session ? (
-              <button
-                onClick={() => signOut()}
-                className={`px-4 py-2 rounded-full transition-colors duration-200 ${
-                  scrolled
-                    ? "bg-red-600 text-white hover:bg-red-700"
-                    : "bg-white text-red-600 hover:bg-gray-100"
-                }`}
-              >
-                LOGOUT
-              </button>
+              <div className="flex items-center space-x-3">
+                <Link
+                  href="/dashboard"
+                  className={`px-4 py-2 rounded-full transition-colors duration-200 ${
+                    scrolled
+                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      : "bg-white text-blue-600 hover:bg-gray-100"
+                  }`}
+                >
+                  DASHBOARD
+                </Link>
+                <button
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className={`px-4 py-2 rounded-full transition-colors duration-200 ${
+                    scrolled
+                      ? "bg-red-600 text-white hover:bg-red-700"
+                      : "bg-white text-red-600 hover:bg-gray-100"
+                  }`}
+                >
+                  LOGOUT
+                </button>
+              </div>
             ) : (
               <button
-                onClick={() => signIn("google")}
+                onClick={handleLogin}
                 className={`px-4 py-2 rounded-full transition-colors duration-200 ${
                   scrolled
                     ? "bg-blue-600 text-white hover:bg-blue-700"
