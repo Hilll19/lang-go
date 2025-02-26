@@ -5,9 +5,9 @@ const VissMiss = () => {
   return (
     <div className="flex flex-col md:flex-row items-center gap-16 h-screen">
       {/* Image Section */}
-      <div className="w-full md:w-1/2 relative h-[400px]">
+      <div className="w-full ml-6 md:w-1/2 relative h-[400px]">
         <Image
-          src="/mission-vission1.jpg"
+          src="/vissmiss-img.jpg"
           alt="Language learners and global explorers"
           fill
           className="rounded-3xl object-cover shadow-lg"
